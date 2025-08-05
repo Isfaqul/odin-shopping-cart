@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+.nav-link {
+    @apply hover:text-neutral-600;
+}
+
+.main {
+    @apply grow;
+}
+
+.texture {
+    background-color: rgb(247, 247, 247);
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        background: url(/noise.png) repeat;
+        background-size: contain;
+        opacity: 0.8;
+        mix-blend-mode: multiply;
+    }
+}
+
+.hero-bg {
+    background: url(/hero-bg.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
