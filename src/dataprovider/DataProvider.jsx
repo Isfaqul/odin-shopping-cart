@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { createContext, useState } from "react";
 import { getCategories, calcCartItemsCount, calcGrandTotal } from "../Utils/Utils";
 
@@ -125,7 +125,9 @@ function ProductProvider({ children }) {
   }
 
   const totalCartItems = calcCartItemsCount(cart);
-  const grandTotalPrice = calcGrandTotal(cart);
+  const grandTotalPrice = useMemo(() => {
+    return calcGrandTotal(cart);
+  }, [cart]);
 
   const value = {
     data,

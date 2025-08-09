@@ -23,9 +23,10 @@ function App() {
           onClick={() => {
             setShowSideNav(true);
           }}
-        />
+        />{" "}
+        {showSideNav && <SideNav onClick={() => setShowSideNav(false)} />}
       </header>
-      {showSideNav && <SideNav onClick={() => setShowSideNav(false)} />}
+
       <Outlet />
       <footer className="px-10 py-3 border-t-[0.5px] border-gray-300 bg-neutral-50">
         <p className="tracking-wide text-xs text-center text-gray-500">Created by @Isfaqul</p>

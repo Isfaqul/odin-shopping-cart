@@ -54,9 +54,9 @@ function weightedRating({ rate, count }) {
   // Calculate Weighted Rating to Sort by Popularity
 
   const C = 3.5; // minimum baseline rating
-  const m = 200; // minimum vote count to be considered
+  const M = 200; // minimum vote count to be considered
 
-  const finalRating = (count / (count + m)) * rate + (m / (count + m)) * C;
+  const finalRating = (count / (count + M)) * rate + (M / (count + M)) * C;
   return finalRating;
 }
 
