@@ -5,7 +5,7 @@ import Ratings from "./Ratings";
 import { roundAmount } from "../Utils/Utils";
 
 export default function WishListProductCard({ product }) {
-  const { deleteFromWishList } = useContext(ProductContext);
+  const { deleteFromWishList, addToast } = useContext(ProductContext);
 
   return (
     <>
@@ -25,6 +25,12 @@ export default function WishListProductCard({ product }) {
                 onClick={(e) => {
                   e.preventDefault();
                   deleteFromWishList(product.id);
+                  addToast({
+                    text: "Removed from Wishlist",
+                    type: "red",
+                    imgSrc: product.image,
+                    imgTitle: product.title,
+                  });
                 }}
               >
                 <svg

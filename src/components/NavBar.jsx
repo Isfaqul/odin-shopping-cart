@@ -65,7 +65,7 @@ export function SideNav({ onClick }) {
   const { totalCartItems } = useContext(ProductContext);
 
   return (
-    <nav className="bg-white absolute z-20 top-0 left-0 bottom-0 right-0 h-dvh">
+    <nav className="bg-white absolute z-20 w-full left-0 top-0">
       <hgroup className="flex items-center gap-2 p-5">
         <h2 className="font-extrabold normal-case text-xl tracking-wide">PixMart</h2>
         <button

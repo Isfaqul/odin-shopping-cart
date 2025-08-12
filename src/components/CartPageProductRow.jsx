@@ -4,7 +4,7 @@ import { roundAmount } from "../Utils/Utils";
 
 export default function CartPageProductRow({ product }) {
   const [quantity, setQuantity] = useState(product.quantity);
-  const { removeItemFromCart, updateQuantity } = useContext(ProductContext);
+  const { removeItemFromCart, updateQuantity, addToast } = useContext(ProductContext);
 
   function increaseQuantity() {
     if (quantity < 10) {
@@ -35,7 +35,15 @@ export default function CartPageProductRow({ product }) {
         <button
           type="button"
           className="hidden md:block mx-2 bg-red-300 p-1 cursor-pointer rounded-sm active:bg-red-400"
-          onClick={() => removeItemFromCart(product.id)}
+          onClick={() => {
+            removeItemFromCart(product.id);
+            addToast({
+              text: "Removed from Cart",
+              type: "red",
+              imgSrc: product.image,
+              imgTitle: product.title,
+            });
+          }}
         >
           <svg
             width="18px"

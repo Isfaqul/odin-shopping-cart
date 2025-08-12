@@ -10,6 +10,7 @@ function ProductProvider({ children }) {
   const [error, setError] = useState(null);
   const [cart, setCart] = useState(new Map());
   const [wishlist, setWishList] = useState(new Set());
+  const [toasts, setToasts] = useState([]);
   const categories = getCategories(data);
 
   useEffect(() => {
@@ -124,6 +125,23 @@ function ProductProvider({ children }) {
     return wishlistedProducts;
   }
 
+  function addToast(toast) {
+    const TOAST_ANIMATION_DURATION = 2000;
+
+    const id = crypto.randomUUID();
+    setToasts((prev) => [...prev, { ...toast, id }]);
+
+    setTimeout(() => {
+      setToasts((prev) => prev.filter((t) => t.id !== id));
+    }, TOAST_ANIMATION_DURATION);
+
+    console.log(toasts);
+  }
+
+  function getToasts() {
+    return toasts;
+  }
+
   const totalCartItems = calcCartItemsCount(cart);
   const grandTotalPrice = useMemo(() => {
     return calcGrandTotal(cart);
@@ -145,6 +163,8 @@ function ProductProvider({ children }) {
     getWishListedProducts,
     removeFromWishList,
     deleteFromWishList,
+    addToast,
+    getToasts,
   };
 
   return <ProductContext value={value}>{children}</ProductContext>;

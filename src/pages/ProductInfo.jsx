@@ -7,7 +7,7 @@ import WishListButton from "../components/WishListButton";
 
 export default function ProductInfo() {
   const [quantity, setQuantity] = useState(1);
-  const { getProductById, addToCart, updateWishListStatus } = useContext(ProductContext);
+  const { getProductById, addToCart, updateWishListStatus, addToast } = useContext(ProductContext);
   const [descriptionShow, setDescriptionShow] = useState(false);
   const params = useParams();
   const navigate = useNavigate();
@@ -99,7 +99,14 @@ export default function ProductInfo() {
                   <button
                     type="button"
                     className="block ml-auto uppercase text-sm tracking-wider font-semibold bg-neutral-700 text-white px-3 active:bg-neutral-800 cursor-pointer"
-                    onClick={() => addToCart(product, quantity)}
+                    onClick={() => {
+                      addToCart(product, quantity);
+                      addToast({
+                        text: "Added to Cart",
+                        imgSrc: product.image,
+                        imgTitle: product.title,
+                      });
+                    }}
                   >
                     Add to Cart
                   </button>

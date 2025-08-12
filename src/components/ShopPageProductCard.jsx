@@ -6,7 +6,7 @@ import WishListButton from "./WishListButton";
 import { roundAmount } from "../Utils/Utils";
 
 export default function ShopPageProductCard({ product }) {
-  const { addToCart, updateWishListStatus } = useContext(ProductContext);
+  const { addToCart, updateWishListStatus, addToast } = useContext(ProductContext);
 
   return (
     <>
@@ -29,6 +29,7 @@ export default function ShopPageProductCard({ product }) {
                   e.preventDefault();
                   e.stopPropagation();
                   addToCart(product);
+                  addToast({ text: "Added to Cart", imgSrc: product.image, imgTitle: product.title });
                 }}
               >
                 Add To Cart
