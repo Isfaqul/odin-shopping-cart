@@ -120,7 +120,15 @@ export default function CartPageProductRow({ product }) {
         <button
           type="button"
           className="md:hidden w-full max-w-16 flex justify-center items-center bg-red-300 p-2 cursor-pointer rounded-sm active:bg-red-400"
-          onClick={() => removeItemFromCart(product.id)}
+          onClick={() => {
+            removeItemFromCart(product.id);
+            addToast({
+              text: "Removed from Cart",
+              type: "red",
+              imgSrc: product.image,
+              imgTitle: product.title,
+            });
+          }}
         >
           <svg
             width="18px"
